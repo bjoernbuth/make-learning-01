@@ -4,6 +4,9 @@ TARGET = final.txt
 output.txt:
 	echo "Hello World" > output.txt
 
+additional.txt:
+	echo "This is additional content." > $@
+
 $(TARGET): $(SOURCES)
 	@echo "$^  represents all dependencies and has the value:"
 	@echo "$^"
