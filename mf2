@@ -1,5 +1,5 @@
 # List of source and target files
-SOURCES := $(addprefix 0, $(addsuffix .txt, $(shell seq 8 12)))
+SOURCES := $(addsuffix .txt, {08..12})
 TARGETS := $(SOURCES:.txt=_reversed.md)
 
 # Default target
