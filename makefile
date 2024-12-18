@@ -1,28 +1,18 @@
-SOURCES = output.txt additional.txt
-TARGET = final.txt
+# List of source and target files
+SOURCES := $(addsuffix .txt, {08..12})
+TARGETS := $(SOURCES:.txt=_reversed.md)
 
-output.txt:
-	echo "Hello World" > output.txt
+# Default target
+all: $(TARGETS)
 
-additional.txt:
-	echo "This is additional content." > $@
+# Rule to create txt files with random integers
+$(SOURCES):
+	python -c "import random; print('\n'.join(str(random.randint(1,100)) for _ in range(8)))" > $@
 
-$(TARGET): $(SOURCES)
-	@echo "$^  represents all dependencies and has the value:"
-	@echo "$^"
-	@echo ""
-	@echo 'The first dependency is $<'
-	@echo "$<"
-	@echo ""
-	@echo 'The target is $@ and has the value:'
-	@echo "$@"
+# Rule to transform txt files to reversed md files
+%_reversed.md: %.txt
+	tac $< > $@
 
-	cat $^ > $@
-
-%.txt:
-	# echo "Default content for $@" > $@
-	@echo 'Default content for $@ > $@'
-	@echo "Default content for $@ > $@"
-
+# Clean up
 clean:
-	rm -f $(TARGET) $(SOURCES)
+	rm -f $(SOURCES) $(TARGETS)
