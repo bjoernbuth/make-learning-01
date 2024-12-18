@@ -1,5 +1,8 @@
-output.txt:
-	echo "Hello, World!" > output.txt
+SOURCES = output.txt additional.txt
+TARGET = final.txt
 
-final.txt: output.txt additional.txt
-	cat output.txt additional.txt > final.txt
+$(TARGET): $(SOURCES)
+	cat $^ > $@
+
+%.txt:
+	echo "Default content for $@" > $@
