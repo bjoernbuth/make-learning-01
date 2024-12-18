@@ -26,3 +26,17 @@ In this Makefile:
 This setup demonstrates how you can start from a very simple Makefile and progressively add more features
 to handle more complex build scenarios using just basic shell commands and features provided by make.
 Each step introduces a new concept, helping you understand how makefiles can be constructed and expanded according to your needs.
+
+## Mermaid diagram for the Makefile
+
+```
+        SOURCES = output.txt additional.txt
+
+        TARGET = final.txt
+```
+
+```mermaid
+graph TD;
+    A[output.txt] --> B[final.txt];
+    C[additional.txt] --> B;
+```
